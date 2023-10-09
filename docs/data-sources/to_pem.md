@@ -17,9 +17,9 @@ This data source can be used to convert a JWK to PEM format
 
 ### Required
 
-- `jwk` (String)
+- `jwk` (String) JWK
 
 ### Read-Only
 
-- `id` (String) The ID of this resource.
-- `pem` (String)
+- `id` (String) ID
+- `pem` (String) PEM
