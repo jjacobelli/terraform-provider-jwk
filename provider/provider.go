@@ -34,6 +34,7 @@ func (p *JwkProvider) Resources(ctx context.Context) []func() resource.Resource 
 func (p *JwkProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		NewJwkToPemDataSource,
+		NewJwkFromK8sDataSource,
 	}
 }
 
