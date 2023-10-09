@@ -1,9 +1,10 @@
-module terraform-provider-jwk
+module github.com/jjacobelli/terraform-provider-jwk
 
 go 1.20
 
 require (
 	github.com/go-jose/go-jose/v3 v3.0.0
+	github.com/hashicorp/terraform-plugin-framework v1.4.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.29.0
 )
 
