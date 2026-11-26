@@ -17,12 +17,30 @@ This data source can be used to fetcks JWKs from a K8S cluster
 
 ### Required
 
-- `client_certificate` (String) K8S Client Certificate
-- `client_key` (String) K8S Client Key
 - `cluster_ca_certificate` (String) K8S Cluster Certificate
 - `host` (String) K8S Host
+
+### Optional
+
+- `client_certificate` (String) K8S Client Certificate. Required with `client_key` when neither `token` nor `exec` is set.
+- `client_key` (String, Sensitive) K8S Client Key. Required with `client_certificate` when neither `token` nor `exec` is set.
+- `exec` (Attributes) Credential plugin that returns a bearer token, like the `exec` block of the kubernetes provider (see [below for nested schema](#nestedatt--exec))
+- `token` (String, Sensitive) K8S bearer token, used instead of `client_certificate` and `client_key`
 
 ### Read-Only
 
 - `id` (String) ID
 - `jwks` (List of String) List of JWKs
+
+<a id="nestedatt--exec"></a>
+### Nested Schema for `exec`
+
+Required:
+
+- `api_version` (String) ExecCredential API version, e.g. `client.authentication.k8s.io/v1`
+- `command` (String) Command to run
+
+Optional:
+
+- `args` (List of String) Command arguments
+- `env` (Map of String) Extra environment variables for the command
