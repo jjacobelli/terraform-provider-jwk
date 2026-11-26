@@ -203,7 +203,7 @@ func fetchJwks(ctx context.Context, host, caPEM string, certs []tls.Certificate,
 	if err != nil {
 		return nil, fmt.Errorf("fail to query K8S cluster: %w", err)
 	}
-	defer k8sResp.Body.Close()
+	defer func() { _ = k8sResp.Body.Close() }()
 
 	jwksData, err := io.ReadAll(k8sResp.Body)
 	if err != nil {
