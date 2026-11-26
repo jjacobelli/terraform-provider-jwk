@@ -12,10 +12,10 @@ func TestFetchJwksToken(t *testing.T) {
 	srv := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/openid/v1/jwks" || r.Header.Get("Authorization") != "Bearer secret" {
 			w.WriteHeader(http.StatusUnauthorized)
-			w.Write([]byte(`{"kind":"Status"}`))
+			_, _ = w.Write([]byte(`{"kind":"Status"}`))
 			return
 		}
-		w.Write([]byte(`{"keys":[{"kty":"RSA","kid":"a"},{"kty":"RSA","kid":"b"}]}`))
+		_, _ = w.Write([]byte(`{"keys":[{"kty":"RSA","kid":"a"},{"kty":"RSA","kid":"b"}]}`))
 	}))
 	defer srv.Close()
 	caPEM := string(pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: srv.Certificate().Raw}))
